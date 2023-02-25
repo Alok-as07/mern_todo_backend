@@ -1,15 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require("dotenv").config();
 const cors = require('cors');
 const app = express();
 const Todo = require('./models/Todo');
+const port = 4000;
+const mc = process.env.API_KEY;
 
 app.use(express.json());
 app.use(cors());
 
 console.log("server started");
 
-mongoose.connect('mongodb+srv://aloksahooas07:eMa4PN1WHpoJPhzH@cluster0.47sxnzx.mongodb.net/todoapp?retryWrites=true&w=majority',
+mongoose.connect( mc,
 {
   useNewUrlParser:true,
   useUnifiedTopology:true
@@ -46,4 +49,4 @@ app.get('/todo/complete/:id',async (req,res)=>{
    
 });
 
-app.listen(4000,()=>{console.log("listening to 4000")});
+app.listen(port,()=>{console.log("listening to "+port)});
