@@ -4,7 +4,7 @@ require("dotenv").config();
 const cors = require('cors');
 const app = express();
 const Todo = require('./models/Todo');
-const port = 4000;
+const port = process.env.PORT;
 const mc = process.env.API_KEY;
 
 app.use(express.json());
@@ -19,6 +19,10 @@ mongoose.connect( mc,
 } 
 ).then(()=>{console.log("connecting to mongoDb");})
 .catch(console.error);
+app.get('/help' ,(req,res)=>{
+  res.send("alok");
+  console.log("backend is fine");
+})
 
 app.get('/todos', async(req,res)=>{
     const todo = await Todo.find();
@@ -49,4 +53,4 @@ app.get('/todo/complete/:id',async (req,res)=>{
    
 });
 
-app.listen(port,()=>{console.log("listening to "+port)});
+app.listen(process.env.PORT,()=>{console.log("listening to "+port)});
