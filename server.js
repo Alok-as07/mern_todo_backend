@@ -20,8 +20,9 @@ mongoose.connect( mc,
 ).then(()=>{console.log("connecting to mongoDb");})
 .catch(console.error);
 app.get('/help' ,(req,res)=>{
-  res.send("alok");
   console.log("backend is fine");
+  res.send("YOUR APPLICATION IS RUNNING ");
+  
 })
 
 app.get('/todos', async(req,res)=>{
